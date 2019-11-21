@@ -1,0 +1,53 @@
+<br> <br>
+<div class="container ">
+
+    <div class="row">
+     <div class="card"> 
+       <h4 class="text-center"> Student Form </h4> 
+       <div class="col-lg-6"> <br>
+        <form [formGroup]="studentform" (ngSubmit)="onSubmit()">
+
+          <div>
+            <input type="text" formControlName="$key">
+            <label> Student Name: </label>
+            <input type="text" class="FormControl" formControlName="name" [(ngModel)]="names">
+            <br>
+            <label> Student College:</label>
+            <input type="text" class="FormControl" formControlName="college" [(ngModel)]="colleges">
+          </div>
+            <br>
+          <button class=" btn btn-sm btn-success"> Submit </button>&nbsp;
+          <button class="btn btn-sm btn-primary" (click)="clear()"> clear </button>
+        </form>
+      </div>
+     </div>
+     <div class="col-lg-1"></div>
+      <div class="col-lg-5">
+          <h2  class="text-center"> Database </h2>
+        <table class="table">
+            
+            <tr>
+              <th>No</th>
+              <th> Student Name</th>
+              <th> College Name</th>
+              <th> Action </th>
+            </tr>
+
+            <tr *ngFor="let item of students; index as i">
+              <td> {{i+1}}</td>
+              <td> {{item.name}}</td>
+              <td> {{item.college}}</td>
+              <td>
+                <button class="btn btn-sm btn-primary" (click)="updateStudent(item)"> Edit </button>
+                <button class="btn btn-sm btn-danger"  (click)="onDelete(item.$key)"> delete </button>
+              </td>
+            </tr>
+
+        </table>
+        <div class="alert alert-danger" *ngIf="showDeletedMessage">
+            Deleted successfully from Marvellous Database.
+          </div>
+      </div>
+    </div>
+</div>
+
